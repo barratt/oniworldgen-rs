@@ -1,0 +1,24 @@
+[package]
+name = "oniworldgen-wasm"
+version = "2.1.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+publish = false
+description = "Oxygen Not Included world generation as WebAssembly: the oniworldgen npm package."
+repository = "https://github.com/barratt/oniworldgen-rs"
+
+[lib]
+# wasm-bindgen output: worldgen.js and worldgen_bg.wasm (--out-name worldgen).
+name = "oniworldgen_wasm"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+oni_worldgen = { package = "rust-worldgen", path = "../rust-worldgen" }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+# scripts/build-npm.sh requires wasm-bindgen-cli at exactly this version.
+wasm-bindgen = "=0.2.118"
+js-sys = "0.3"
+# Faster than the default dlmalloc for the generator's many small allocations.
+talc = "5.1"

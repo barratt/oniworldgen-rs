@@ -1,0 +1,5 @@
+The WebAssembly module embeds worldgen data (element, worldgen, template and
+story trait files) derived from Oxygen Not Included by Klei Entertainment.
+That data is Klei's and is not covered by the AGPL-3.0 licence of this
+package's code. Oxygen Not Included is a trademark of Klei Entertainment;
+this package is not affiliated with or endorsed by Klei Entertainment.

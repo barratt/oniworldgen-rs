@@ -1,8 +1,17 @@
 [workspace]
 resolver = "2"
-members = ["rust-worldgen", "simcore", "settle"]
+members = ["rust-worldgen", "simcore", "settle", "wasm", "tools/snapshot"]
+# `cargo build` / `cargo test` at the root cover the CLIs; the WASM package is
+# built by scripts/build-npm.sh.
+default-members = ["rust-worldgen", "simcore", "settle"]
 
 [profile.release]
 # Results are identical at every optimisation level (no fast-math).
 opt-level = 3
 lto = true
+
+# The npm package's WebAssembly build (scripts/build-npm.sh).
+[profile.wasm-release]
+inherits = "release"
+codegen-units = 1
+panic = "abort"

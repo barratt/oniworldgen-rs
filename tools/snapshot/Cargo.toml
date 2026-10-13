@@ -1,0 +1,10 @@
+[package]
+name = "worldgen-snapshot"
+version = "0.1.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+publish = false
+description = "Write the pre-parsed game data snapshot the WASM build embeds."
+
+[dependencies]
+oni_worldgen = { package = "rust-worldgen", path = "../../rust-worldgen" }

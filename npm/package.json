@@ -1,0 +1,20 @@
+{
+  "name": "oniworldgen",
+  "version": "2.1.0",
+  "description": "Oxygen Not Included world generation (game build 744825) as WebAssembly.",
+  "keywords": ["oxygen-not-included", "oni", "worldgen", "seed", "wasm"],
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": { "types": "./index.d.ts", "default": "./index.js" },
+    "./worldgen_bg.wasm": "./worldgen_bg.wasm"
+  },
+  "files": ["index.js", "index.d.ts", "worldgen.js", "worldgen_bg.wasm", "README.md", "LICENSE", "NOTICE"],
+  "sideEffects": false,
+  "license": "AGPL-3.0-only",
+  "repository": { "type": "git", "url": "git+https://github.com/barratt/oniworldgen-rs.git", "directory": "npm" },
+  "homepage": "https://github.com/barratt/oniworldgen-rs#readme",
+  "bugs": { "url": "https://github.com/barratt/oniworldgen-rs/issues" },
+  "gameBuild": "744825"
+}
