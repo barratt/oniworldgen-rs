@@ -109,8 +109,8 @@ pub fn generate_cluster(ds:&crate::data_source::DataSource,coordinate:&str,dlc:O
 }
 /// The ambient document around per-world outputs.
 pub fn document(coordinate:&str,observation_frames:u32,worlds:&[Output])->serde_json::Value{
-    serde_json::json!({"phase":"native-ambient-generated","source":"rust-native+oni-simdll-managed-state","gameVersion":"744825","coordinate":coordinate,
-        "observation_frames":observation_frames,"scope":"Native ambient generation using explicit simulation observation endpoint; no game capture consumed; parity unproven","worlds":worlds})
+    serde_json::json!({"phase":"native-ambient-generated","source":"rust-settle","gameVersion":"744825","coordinate":coordinate,
+        "observation_frames":observation_frames,"scope":"Ambient spawn placement after the settle simulation","worlds":worlds})
 }
 pub fn region(grid:&Grid<'_>,plan:&Region,rng:&mut SeededRandom,occupied:&mut HashSet<i32>)->Result<Vec<(i32,String)>,String>{
     if plan.mobs.is_empty(){return Ok(Vec::new());}
