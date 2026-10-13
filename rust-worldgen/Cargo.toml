@@ -1,0 +1,27 @@
+[package]
+name = "rust-worldgen"
+version = "0.1.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+description = "Oxygen Not Included world generation from a world coordinate."
+publish = false
+
+[lib]
+name = "oni_worldgen"
+
+[dependencies]
+serde = { version = "1", features = ["derive", "rc"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+serde_yaml = "0.9"
+rmp-serde = "1"
+miniz_oxide = { version = "0.8", default-features = false, features = ["with-alloc"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+clipper-sys = "=0.8.0"
+
+[features]
+default = []
+# Use the Rust Clipper port instead of clipper-sys.
+rust-clipper = []
+# Check every fast-path clip against Clipper (slow; for testing).
+clip-check = []

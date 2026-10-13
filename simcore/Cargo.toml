@@ -1,0 +1,11 @@
+[package]
+name = "simcore"
+version = "0.1.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+publish = false
+description = "Oxygen Not Included cell simulation used to settle generated worlds."
+
+[dependencies]
+libm = "0.2"
+serde_yaml = "0.9"

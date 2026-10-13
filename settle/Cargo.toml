@@ -1,0 +1,13 @@
+[package]
+name = "settle"
+version = "0.1.0"
+edition = "2021"
+license = "AGPL-3.0-only"
+publish = false
+description = "Settle generated worlds with the simcore simulation and place ambient mobs."
+
+[dependencies]
+simcore = { path = "../simcore" }
+oni_worldgen = { package = "rust-worldgen", path = "../rust-worldgen" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
