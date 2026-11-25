@@ -29,9 +29,6 @@ use crate::terrain::MaterialCell;
 pub fn check_coordinate(coordinate: &str) -> Result<Coord, String> {
     let parsed = Coord::parse(coordinate).ok_or("invalid coordinate")?;
     if parsed.canonical() != coordinate || parsed.seed < 0 { return Err("use a canonical full coordinate with a nonnegative seed".into()); }
-    if parsed.mixing != "0" && parsed.story != "0" {
-        return Err("stories combined with mixing are not implemented; refusing to silently ignore coordinate fields".into());
-    }
     custom_settings::decode(&parsed.other, &parsed.story, &parsed.mixing)?;
     Ok(parsed)
 }
@@ -450,4 +447,19 @@ pub fn cluster_catalog(ds: &DataSource) -> Value {
             "worlds": c.world_placements.iter().map(|w| &w.world_ref).collect::<Vec<_>>(), "disableStoryTraits": c.disable_story_traits,
             "fixedCoordinate": c.fixed_coordinate})
     }).collect())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn accepts_stories_and_mixing_without_discarding_either_field() {
+        let coord = check_coordinate("V-SNDST-C-5082-0-D3-J3ET5").unwrap();
+        assert_eq!(coord.story, "D3");
+        assert_eq!(coord.mixing, "J3ET5");
+        let settings = custom_settings::decode(&coord.other, &coord.story, &coord.mixing).unwrap();
+        assert!(!settings.stories.is_empty());
+        assert!(!settings.mixing_is_default());
+    }
 }
